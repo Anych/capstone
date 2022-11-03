@@ -9,10 +9,11 @@
         <version>2.7.5</version>
         <relativePath/>
     </parent>
+
     <groupId>kz.anuar</groupId>
     <artifactId>MIlaIrisCommon</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>MilaIrisCommmon</name>
+    <name>MilaIrisCommon</name>
 
     <properties>
         <java.version>19</java.version>

@@ -11,6 +11,7 @@
 
     <modules>
         <module>MilaIrisCommon</module>
+        <module>MilaIrisWebParent</module>
     </modules>
 
 </project>
