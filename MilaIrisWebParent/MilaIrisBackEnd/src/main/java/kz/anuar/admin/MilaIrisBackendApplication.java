@@ -1,4 +1,4 @@
-package kz.anuar;
+package kz.anuar.admin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
