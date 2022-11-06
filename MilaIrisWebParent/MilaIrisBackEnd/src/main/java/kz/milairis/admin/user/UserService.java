@@ -31,8 +31,8 @@ public class UserService {
         return (List<Role>) roleRepo.findAll();
     }
 
-    public void save(User user) {
-        boolean isUpdatingUser = (user.getId() == null);
+    public User save(User user) {
+        boolean isUpdatingUser = (user.getId() != null);
 
         if (isUpdatingUser) {
             User existingUser = userRepo.findById(user.getId()).get();
@@ -46,7 +46,8 @@ public class UserService {
         } else {
             encodePassword(user);
         }
-        userRepo.save(user);
+
+        return userRepo.save(user);
     }
 
     private void encodePassword(User user) {
@@ -55,13 +56,13 @@ public class UserService {
     }
 
     public boolean isEmailUnique(Integer id, String email) {
-        User userByEmail = userRepo.getUsersByEmail(email);
+        User userByEmail = userRepo.getUserByEmail(email);
 
-        if(userByEmail == null) return true;
+        if (userByEmail == null) return true;
 
-        boolean isCreatingEmail = (id == null);
+        boolean isCreatingNew = (id == null);
 
-        if (isCreatingEmail) {
+        if (isCreatingNew) {
             if (userByEmail != null) return false;
         } else {
             if (userByEmail.getId() != id) {
@@ -72,11 +73,10 @@ public class UserService {
         return true;
     }
 
-    public User get(Integer id) throws UserNotFoundException{
+    public User get(Integer id) throws UserNotFoundException {
         try {
-
             return userRepo.findById(id).get();
-        } catch (NoSuchElementException e) {
+        } catch (NoSuchElementException ex) {
             throw new UserNotFoundException("Could not find any user with ID " + id);
         }
     }

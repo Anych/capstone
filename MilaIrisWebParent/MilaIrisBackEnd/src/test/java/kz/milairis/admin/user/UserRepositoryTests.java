@@ -89,7 +89,7 @@ public class UserRepositoryTests {
     @Test
     public void testGetUserByEmail() {
         String email = "botaonelove@yandex.ru";
-        User user = repo.getUsersByEmail(email);
+        User user = repo.getUserByEmail(email);
 
         assertThat(user).isNotNull();
     }
