@@ -2,6 +2,7 @@ package kz.milairis.admin.user;
 
 import kz.milairis.common.entity.Role;
 import kz.milairis.common.entity.User;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -128,7 +129,23 @@ public class UserRepositoryTests {
 
         List<User> listUsers = page.getContent();
 
-//        listUsers.forEach(user -> );
         assertThat(listUsers.size()).isEqualTo(pageSize);
+    }
+
+    @Test
+    public void testSearchUsers() {
+        String keyword = "anuar";
+
+        int pageNumber = 0;
+        int pageSize = 4;
+
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        Page<User> page = repo.findAll(keyword, pageable);
+
+        List<User> listUsers = page.getContent();
+
+        listUsers.forEach(user -> System.out.println(user));
+
+        Assertions.assertThat(listUsers.size()).isGreaterThan(0);
     }
 }
