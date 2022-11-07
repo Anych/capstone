@@ -36,12 +36,14 @@ public class UserController {
             @Param("sortField") String sortField, @Param("sortDir") String sortDir,
             @Param("keyword") String keyword
     ) {
+        System.out.println("Sort Field: " + sortField);
+        System.out.println("Sort Order: " + sortDir);
 
         Page<User> page = service.listByPage(pageNum, sortField, sortDir, keyword);
 
         List<User> listUsers = page.getContent();
 
-        long startCount = (long) (pageNum - 1) * UserService.USERS_PER_PAGE + 1;
+        long startCount = (pageNum - 1) * UserService.USERS_PER_PAGE + 1;
         long endCount = startCount + UserService.USERS_PER_PAGE - 1;
         if (endCount > page.getTotalElements()) {
             endCount = page.getTotalElements();
@@ -100,7 +102,12 @@ public class UserController {
 
         redirectAttributes.addFlashAttribute("message", "The user has been saved successfully.");
 
-        return "redirect:/users";
+        return getRedirectURLtoAffectedUser(user);
+    }
+
+    private String getRedirectURLtoAffectedUser(User user) {
+        String firstPartOfEmail = user.getEmail().split("@")[0];
+        return "redirect:/users/page/1?sortField=id&sortDir=asc&keyword=" + firstPartOfEmail;
     }
 
     @GetMapping("/users/edit/{id}")
