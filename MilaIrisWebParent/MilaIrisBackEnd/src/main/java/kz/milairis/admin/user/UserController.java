@@ -4,6 +4,7 @@ import kz.milairis.admin.FileUploadUtil;
 import kz.milairis.common.entity.Role;
 import kz.milairis.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -24,12 +25,29 @@ public class UserController {
     private UserService service;
 
     @GetMapping("/users")
-    public String listAll(Model model) {
-        List<User> listUsers = service.listAll();
+    public String listFirstPage(Model model) {
+        return listByPage(1, model);
+    }
+
+    @GetMapping("/users/page/{pageNum}")
+    public String listByPage(@PathVariable(name = "pageNum") int pageNum, Model model) {
+        Page<User> page = service.listByPage(pageNum);
+        List<User> listUsers = page.getContent();
+
+        long startCount = (long) (pageNum - 1) * UserService.USERS_PER_PAGE + 1;
+        long endCount = startCount + UserService.USERS_PER_PAGE - 1;
+        if (endCount > page.getTotalElements()) {
+            endCount = page.getTotalElements();
+        }
+
+        model.addAttribute("startCount", startCount);
+        model.addAttribute("endCount", endCount);
+        model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("listUsers", listUsers);
 
         return "users";
     }
+
 
     @GetMapping("/users/new")
     public String newUser(Model model) {
