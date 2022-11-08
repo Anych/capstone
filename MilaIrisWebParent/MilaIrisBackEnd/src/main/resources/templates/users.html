@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0">
 
-	<title>Home - Shopme Admin</title>
+	<title>Home - Mila&Iris Admin</title>
 
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
@@ -17,7 +17,7 @@
 	<div>
 		<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
 			<a class="navbar-brand" th:href="@{/}">
-				<img th:src="@{/images/ShopmeAdminSmall.png}" />
+				<img th:src="@{/images/logo.png}" />
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
 				<span class="navbar-toggler-icon"></span>
@@ -65,6 +65,8 @@
 	<div>
 		<h2>Manage Users</h2>
 		<a th:href="@{/users/new}">Create New User</a>
+		&nbsp;|&nbsp;
+		<a th:href="@{/users/export/csv}">Export to CSV</a>
 	</div>
 
 	<div th:if="${message != null}" class="alert alert-success text-center">
@@ -193,7 +195,7 @@
 	</div>
 
 	<div class="text-center">
-		<p>Shopme Control Panel - Copyright &copy; Shopme</p>
+		<p>Mila&Iris Control Panel - Copyright &copy; Mila&Iris</p>
 	</div>
 
 </div>
