@@ -11,5 +11,4 @@ public class MilaIrisBackEndApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MilaIrisBackEndApplication.class, args);
 	}
-
 }

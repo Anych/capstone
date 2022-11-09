@@ -82,5 +82,4 @@ public class UserPdfExporter extends AbstractExporter {
 		cell.setPhrase(new Phrase("Enabled", font));		
 		table.addCell(cell);		
 	}
-
 }

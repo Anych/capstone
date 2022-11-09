@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<head th:replace="fragments :: page_head('Home - Mila&Iris Admin')" />
+<head th:replace="fragments :: page_head('Home - Shopme Admin')" />
 <body>
 <div class="container-fluid">
 	<div th:replace="navigation :: menu"></div>
 	<div>
-		<h1>Mila&Iris Control Panel</h1>
+		<h2>Mila&Iris Control Panel</h2>
+		Welcome
+		<a th:href="@{/account}"
+		   sec:authentication="principal.fullName"></a>
+		<span sec:authentication="principal.authorities"></span>
 	</div>
 
 	<div th:replace="fragments :: footer"></div>

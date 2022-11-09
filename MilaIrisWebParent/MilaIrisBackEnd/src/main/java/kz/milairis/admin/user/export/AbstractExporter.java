@@ -22,4 +22,3 @@ public class AbstractExporter {
         response.setHeader(headerKey, headerValue);
     }
 }
-
