@@ -1,6 +1,8 @@
-package kz.milairis.admin.user;
+package kz.milairis.admin.user.controller;
 
 import kz.milairis.admin.FileUploadUtil;
+import kz.milairis.admin.user.UserNotFoundException;
+import kz.milairis.admin.user.UserService;
 import kz.milairis.admin.user.export.UserCsvExporter;
 import kz.milairis.admin.user.export.UserExcelExporter;
 import kz.milairis.admin.user.export.UserPdfExporter;
@@ -40,8 +42,6 @@ public class UserController {
             @Param("sortField") String sortField, @Param("sortDir") String sortDir,
             @Param("keyword") String keyword
     ) {
-        System.out.println("Sort Field: " + sortField);
-        System.out.println("Sort Order: " + sortDir);
 
         Page<User> page = service.listByPage(pageNum, sortField, sortDir, keyword);
 
@@ -66,7 +66,7 @@ public class UserController {
         model.addAttribute("reverseSortDir", reverseSortDir);
         model.addAttribute("keyword", keyword);
 
-        return "users";
+        return "users/users";
     }
 
 
@@ -81,7 +81,7 @@ public class UserController {
         model.addAttribute("listRoles", listRoles);
         model.addAttribute("pageTitle", "Create New User");
 
-        return "user_form";
+        return "users/user_form";
     }
 
     @PostMapping("/users/save")
@@ -126,7 +126,7 @@ public class UserController {
             model.addAttribute("pageTitle", "Edit User (ID: " + id + ")");
             model.addAttribute("listRoles", listRoles);
 
-            return "user_form";
+            return "users/user_form";
         } catch (UserNotFoundException ex) {
             redirectAttributes.addFlashAttribute("message", ex.getMessage());
             return "redirect:/users";

@@ -1,7 +1,8 @@
-package kz.milairis.admin.user;
+package kz.milairis.admin.user.controller;
 
 import kz.milairis.admin.FileUploadUtil;
 import kz.milairis.admin.security.MilaIrisUserDetails;
+import kz.milairis.admin.user.UserService;
 import kz.milairis.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -29,7 +30,7 @@ public class AccountController {
         User user = service.getByEmail(email);
         model.addAttribute("user", user);
 
-        return "account_form";
+        return "users/account_form";
     }
 
     @PostMapping("/account/update")
