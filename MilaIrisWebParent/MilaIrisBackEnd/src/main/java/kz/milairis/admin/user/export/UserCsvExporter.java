@@ -1,4 +1,4 @@
-package kz.milairis.admin.user;
+package kz.milairis.admin.user.export;
 
 import kz.milairis.common.entity.User;
 import org.supercsv.io.CsvBeanWriter;

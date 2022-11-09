@@ -12,6 +12,7 @@ public class PasswordEncoderTests {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String rawPassword = "anuar1992";
         String encodedPassword = passwordEncoder.encode(rawPassword);
+        System.out.println(encodedPassword);
 
         boolean matches = passwordEncoder.matches(rawPassword, encodedPassword);
 
