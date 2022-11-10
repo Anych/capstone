@@ -13,8 +13,12 @@ public class CategoryService {
     @Autowired
     private CategoryRepository repo;
 
-    public List<Category> listAll() {
+    public List<Category> listAll(){
         return (List<Category>) repo.findAll();
+    }
+
+    public Category save(Category category) {
+        return repo.save(category);
     }
 
     public List<Category> listCategoriesUsedInForm() {
@@ -24,13 +28,13 @@ public class CategoryService {
 
         for (Category category : categoriesInDB) {
             if (category.getParent() == null) {
-                categoriesUsedInForm.add(new Category(category.getName()));
+                categoriesUsedInForm.add(Category.copyIdAndName(category));
 
                 Set<Category> children = category.getChildren();
 
                 for (Category subCategory : children) {
                     String name = "--" + subCategory.getName();
-                    categoriesUsedInForm.add(new Category(name));
+                    categoriesUsedInForm.add(Category.copyIdAndName(subCategory.getId(), name));
 
                     listChildren(categoriesUsedInForm, subCategory, 1);
                 }
@@ -49,7 +53,7 @@ public class CategoryService {
             name.append("--".repeat(Math.max(0, newSubLevel)));
             name.append(subCategory.getName());
 
-            categoriesUsedInForm.add(new Category(name.toString()));
+            categoriesUsedInForm.add(Category.copyIdAndName(subCategory.getId(), String.valueOf(name)));
 
             listChildren(categoriesUsedInForm, subCategory, newSubLevel);
         }
