@@ -1,7 +1,7 @@
 package kz.milairis.admin.user;
 
 public class UserNotFoundException extends Exception {
-    public UserNotFoundException(String s) {
-        super(s);
+    public UserNotFoundException(String message) {
+        super(message);
     }
 }

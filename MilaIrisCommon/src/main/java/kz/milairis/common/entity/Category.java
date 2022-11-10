@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name= "categories")
+@Table(name = "categories")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +31,7 @@ public class Category {
 
     public Category() {
     }
+
     public Category(Integer id) {
         this.id = id;
     }
@@ -69,15 +70,15 @@ public class Category {
         return copyCategory;
     }
 
-    public Category(String name, Category parent) {
-        this(name);
-        this.parent = parent;
-    }
-
     public Category(String name) {
         this.name = name;
         this.alias = name;
         this.image = "default.png";
+    }
+
+    public Category(String name, Category parent) {
+        this(name);
+        this.parent = parent;
     }
 
     public Integer getId() {
@@ -138,6 +139,8 @@ public class Category {
 
     @Transient
     public String getImagePath() {
+        if (this.id == null) return "/images/image-thumbnail.png";
+
         return "/category-images/" + this.id + "/" + this.image;
     }
 }
