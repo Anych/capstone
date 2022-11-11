@@ -22,6 +22,7 @@ public class CategoryService {
         } else if (sortDir.equals("desc")) {
             sort = sort.descending();
         }
+
         List<Category> rootCategories = repo.findRootCategories(sort);
 
         return listHierarchicalCategories(rootCategories, sortDir);
@@ -75,17 +76,15 @@ public class CategoryService {
         Iterable<Category> categoriesInDB = repo.findRootCategories(Sort.by("name").ascending());
 
         for (Category category : categoriesInDB) {
-            if (category.getParent() == null) {
-                categoriesUsedInForm.add(Category.copyIdAndName(category));
+            categoriesUsedInForm.add(Category.copyIdAndName(category));
 
-                Set<Category> children = sortSubCategories(category.getChildren());
+            Set<Category> children = sortSubCategories(category.getChildren());
 
-                for (Category subCategory : children) {
-                    String name = "--" + subCategory.getName();
-                    categoriesUsedInForm.add(Category.copyIdAndName(subCategory.getId(), name));
+            for (Category subCategory : children) {
+                String name = "--" + subCategory.getName();
+                categoriesUsedInForm.add(Category.copyIdAndName(subCategory.getId(), name));
 
-                    listSubCategoriesUsedInForm(categoriesUsedInForm, subCategory, 1);
-                }
+                listSubCategoriesUsedInForm(categoriesUsedInForm, subCategory, 1);
             }
         }
 
@@ -141,6 +140,7 @@ public class CategoryService {
             if (categoryByAlias != null && categoryByAlias.getId() != id) {
                 return "DuplicateAlias";
             }
+
         }
 
         return "OK";
@@ -163,10 +163,20 @@ public class CategoryService {
         });
 
         sortedChildren.addAll(children);
+
         return sortedChildren;
     }
 
     public void updateCategoryEnabledStatus(Integer id, boolean enabled) {
         repo.updateEnabledStatus(id, enabled);
+    }
+
+    public void delete(Integer id) throws CategoryNotFoundException {
+        Long countById = repo.countById(id);
+        if (countById == null || countById == 0) {
+            throw new CategoryNotFoundException("Could not find any category with ID " + id);
+        }
+
+        repo.deleteById(id);
     }
 }
