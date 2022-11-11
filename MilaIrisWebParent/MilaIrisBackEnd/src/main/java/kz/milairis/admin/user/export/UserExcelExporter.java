@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
+import kz.milairis.admin.AbstractExporter;
 import kz.milairis.common.entity.User;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -59,7 +60,7 @@ public class UserExcelExporter extends AbstractExporter {
     }
 
     public void export(List<User> listUsers, HttpServletResponse response) throws IOException {
-        super.setResponseHeader(response, "application/octet-stream", ".xlsx");
+        super.setResponseHeader(response, "application/octet-stream", ".xlsx", "users_");
 
         writeHeaderLine();
         writeDataLines(listUsers);
