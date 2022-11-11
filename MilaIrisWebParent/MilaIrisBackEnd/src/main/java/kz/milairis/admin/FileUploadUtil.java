@@ -56,6 +56,5 @@ public class FileUploadUtil {
         } catch (IOException e) {
             LOGGER.error("Could not remove directory: " + dir);
         }
-
     }
 }
