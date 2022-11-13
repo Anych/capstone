@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@EntityScan({"kz.milairis.common.entity", "kz.milairis.admin.user"})
+@EntityScan({"kz.milairis.common.entity"})
 public class MilaIrisBackEndApplication {
 
 	public static void main(String[] args) {

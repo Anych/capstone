@@ -32,11 +32,13 @@ public class CategoryService {
 		Pageable pageable = PageRequest.of(pageNum - 1, ROOT_CATEGORIES_PER_PAGE, sort);
 
 		Page<Category> pageCategories = null;
+
 		if (keyword != null && !keyword.isEmpty()) {
 			pageCategories = repo.search(keyword, pageable);
 		} else {
 			pageCategories = repo.findRootCategories(pageable);
 		}
+
 		List<Category> rootCategories = pageCategories.getContent();
 
 		pageInfo.setTotalElements(pageCategories.getTotalElements());
@@ -53,7 +55,6 @@ public class CategoryService {
 		} else {
 			return listHierarchicalCategories(rootCategories, sortDir);
 		}
-
 	}
 
 	private List<Category> listHierarchicalCategories(List<Category> rootCategories, String sortDir) {
