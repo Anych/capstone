@@ -1,9 +1,7 @@
 package kz.milairis.common.entity;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "products")
@@ -60,6 +58,9 @@ public class Product {
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private Set<ProductImage> images = new HashSet<>();
+
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+	private List<ProductDetail> details = new ArrayList<>();
 
 	public Integer getId() {
 		return id;
@@ -230,5 +231,17 @@ public class Product {
 		if (this.id == null) return "/images/image-thumbnail.png";
 
 		return "/product-images/" + this.id + "/" + this.mainImage;
+	}
+
+	public List<ProductDetail> getDetails() {
+		return details;
+	}
+
+	public void setDetails(List<ProductDetail> details) {
+		this.details = details;
+	}
+
+	public void addDetail(String name, String value) {
+		this.details.add(new ProductDetail(name, value, this));
 	}
 }

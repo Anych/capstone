@@ -3,6 +3,7 @@ package kz.milairis.admin.product;
 import kz.milairis.common.entity.Brand;
 import kz.milairis.common.entity.Category;
 import kz.milairis.common.entity.Product;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -107,5 +108,18 @@ public class ProductRepositoryTests {
         Product savedProduct = repo.save(product);
 
         assertThat(savedProduct.getImages().size()).isEqualTo(3);
+    }
+
+    @Test
+    public void testSaveProductWithDetails() {
+        Integer productId = 1;
+        Product product = repo.findById(productId).get();
+
+        product.addDetail("Device Memory", "128 GB");
+        product.addDetail("CPU Model", "MediaTek");
+        product.addDetail("OS", "Android 10");
+
+        Product savedProduct = repo.save(product);
+        Assertions.assertThat(savedProduct.getDetails()).isNotEmpty();
     }
 }
