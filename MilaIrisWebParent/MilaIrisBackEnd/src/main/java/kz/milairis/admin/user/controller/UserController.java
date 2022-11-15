@@ -47,9 +47,8 @@ public class UserController {
 
         List<User> listUsers = page.getContent();
 
-        long startCount = (long) (pageNum - 1) * UserService.USERS_PER_PAGE + 1;
+        long startCount = (pageNum - 1) * UserService.USERS_PER_PAGE + 1;
         long endCount = startCount + UserService.USERS_PER_PAGE - 1;
-
         if (endCount > page.getTotalElements()) {
             endCount = page.getTotalElements();
         }
@@ -94,7 +93,7 @@ public class UserController {
             user.setPhotos(fileName);
             User savedUser = service.save(user);
 
-            String uploadDir = "MilaIrisWebParent/user-photos/" + savedUser.getId();
+            String uploadDir = "user-photos/" + savedUser.getId();
 
             FileUploadUtil.cleanDir(uploadDir);
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
