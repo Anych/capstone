@@ -4,11 +4,13 @@ import kz.milairis.common.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
+@Transactional
 public class ProductService {
 
     @Autowired private ProductRepository repo;
@@ -49,6 +51,10 @@ public class ProductService {
         return "OK";
     }
 
+    public void updateProductEnabledStatus(Integer id, boolean enabled) {
+        repo.updateEnabledStatus(id, enabled);
+    }
+
     public void delete(Integer id) throws ProductNotFoundException {
         Long countById = repo.countById(id);
 
@@ -62,7 +68,7 @@ public class ProductService {
     public Product get(Integer id) throws ProductNotFoundException {
         try {
             return repo.findById(id).get();
-        } catch (NoSuchElementException exception) {
+        } catch (NoSuchElementException ex) {
             throw new ProductNotFoundException("Could not find any product with ID " + id);
         }
     }

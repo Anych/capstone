@@ -44,10 +44,10 @@ public class Product {
 	private float width;
 	private float height;
 	private float weight;
-
+	
 	@Column(name = "main_image", nullable = false)
 	private String mainImage;
-	
+		
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
@@ -55,10 +55,10 @@ public class Product {
 	@ManyToOne
 	@JoinColumn(name = "brand_id")	
 	private Brand brand;
-
+	
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<ProductImage> images = new HashSet<>();
-
+	
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ProductDetail> details = new ArrayList<>();
 
@@ -206,6 +206,11 @@ public class Product {
 		this.brand = brand;
 	}
 
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + "]";
+	}
+
 	public String getMainImage() {
 		return mainImage;
 	}
@@ -221,15 +226,15 @@ public class Product {
 	public void setImages(Set<ProductImage> images) {
 		this.images = images;
 	}
-
+	
 	public void addExtraImage(String imageName) {
 		this.images.add(new ProductImage(imageName, this));
 	}
-
+	
 	@Transient
 	public String getMainImagePath() {
-		if (this.id == null) return "/images/image-thumbnail.png";
-
+		if (id == null || mainImage == null) return "/images/image-thumbnail.png";
+		System.out.println("/product-images/" + this.id + "/" + this.mainImage);
 		return "/product-images/" + this.id + "/" + this.mainImage;
 	}
 
@@ -240,7 +245,7 @@ public class Product {
 	public void setDetails(List<ProductDetail> details) {
 		this.details = details;
 	}
-
+	
 	public void addDetail(String name, String value) {
 		this.details.add(new ProductDetail(name, value, this));
 	}
@@ -248,16 +253,17 @@ public class Product {
 	public void addDetail(Integer id, String name, String value) {
 		this.details.add(new ProductDetail(id, name, value, this));
 	}
-
+	
 	public boolean containsImageName(String imageName) {
 		Iterator<ProductImage> iterator = images.iterator();
-
+		
 		while (iterator.hasNext()) {
 			ProductImage image = iterator.next();
 			if (image.getName().equals(imageName)) {
 				return true;
 			}
 		}
+		
 		return false;
 	}
 }

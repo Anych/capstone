@@ -30,10 +30,8 @@ import java.util.Set;
 public class ProductController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
-    @Autowired
-    private ProductService productService;
-    @Autowired
-    private BrandService brandService;
+    @Autowired private ProductService productService;
+    @Autowired private BrandService brandService;
 
     @GetMapping("/products")
     public String listAll(Model model) {
@@ -87,30 +85,31 @@ public class ProductController {
     }
 
     private void deleteExtraImagesWeredRemovedOnForm(Product product) {
-        String extraImageDir = "/product-images/" + product.getId() + "/extras";
+        String extraImageDir = "../product-images/" + product.getId() + "/extras";
         Path dirPath = Paths.get(extraImageDir);
 
         try {
             Files.list(dirPath).forEach(file -> {
-                String fileName = file.toFile().getName();
+                String filename = file.toFile().getName();
 
-                if (!product.containsImageName(fileName)) {
+                if (!product.containsImageName(filename)) {
                     try {
                         Files.delete(file);
-                        LOGGER.info("Deleted extra image: " + fileName
-                        );
+                        LOGGER.info("Deleted extra image: " + filename);
+
                     } catch (IOException e) {
-                        LOGGER.error("Could not delete extra image: " + fileName);
+                        LOGGER.error("Could not delete extra image: " + filename);
                     }
                 }
-            });
 
+            });
         } catch (IOException ex) {
             LOGGER.error("Could not list directory: " + dirPath);
         }
     }
 
-    private void setExistingExtraImageNames(String[] imageIDs, String[] imageNames, Product product) {
+    private void setExistingExtraImageNames(String[] imageIDs, String[] imageNames,
+                                            Product product) {
         if (imageIDs == null || imageIDs.length == 0) return;
 
         Set<ProductImage> images = new HashSet<>();
@@ -118,10 +117,12 @@ public class ProductController {
         for (int count = 0; count < imageIDs.length; count++) {
             Integer id = Integer.parseInt(imageIDs[count]);
             String name = imageNames[count];
+
             images.add(new ProductImage(id, name, product));
         }
 
         product.setImages(images);
+
     }
 
     private void setProductDetails(String[] detailIDs, String[] detailNames,
@@ -145,7 +146,6 @@ public class ProductController {
                                     MultipartFile[] extraImageMultiparts, Product savedProduct) throws IOException {
         if (!mainImageMultipart.isEmpty()) {
             String fileName = StringUtils.cleanPath(mainImageMultipart.getOriginalFilename());
-
             String uploadDir = "../product-images/" + savedProduct.getId();
 
             FileUploadUtil.cleanDir(uploadDir);
@@ -156,12 +156,13 @@ public class ProductController {
             String uploadDir = "../product-images/" + savedProduct.getId() + "/extras";
 
             for (MultipartFile multipartFile : extraImageMultiparts) {
-                if (!multipartFile.isEmpty()) continue;
+                if (multipartFile.isEmpty()) continue;
 
                 String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-                FileUploadUtil.saveFile(uploadDir, fileName, mainImageMultipart);
+                FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
             }
         }
+
     }
 
     private void setNewExtraImageNames(MultipartFile[] extraImageMultiparts, Product product) {
@@ -169,6 +170,7 @@ public class ProductController {
             for (MultipartFile multipartFile : extraImageMultiparts) {
                 if (!multipartFile.isEmpty()) {
                     String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+
                     if (!product.containsImageName(fileName)) {
                         product.addExtraImage(fileName);
                     }
@@ -182,6 +184,17 @@ public class ProductController {
             String fileName = StringUtils.cleanPath(mainImageMultipart.getOriginalFilename());
             product.setMainImage(fileName);
         }
+    }
+
+    @GetMapping("/products/{id}/enabled/{status}")
+    public String updateCategoryEnabledStatus(@PathVariable("id") Integer id,
+                                              @PathVariable("status") boolean enabled, RedirectAttributes redirectAttributes) {
+        productService.updateProductEnabledStatus(id, enabled);
+        String status = enabled ? "enabled" : "disabled";
+        String message = "The Product ID " + id + " has been " + status;
+        redirectAttributes.addFlashAttribute("message", message);
+
+        return "redirect:/products";
     }
 
     @GetMapping("/products/delete/{id}")
@@ -198,8 +211,8 @@ public class ProductController {
 
             redirectAttributes.addFlashAttribute("message",
                     "The product ID " + id + " has been deleted successfully");
-        } catch (ProductNotFoundException e) {
-            redirectAttributes.addFlashAttribute("message", e.getMessage());
+        } catch (ProductNotFoundException ex) {
+            redirectAttributes.addFlashAttribute("message", ex.getMessage());
         }
 
         return "redirect:/products";
@@ -218,6 +231,7 @@ public class ProductController {
             model.addAttribute("pageTitle", "Edit Product (ID: " + id + ")");
             model.addAttribute("numberOfExistingExtraImages", numberOfExistingExtraImages);
 
+
             return "products/product_form";
 
         } catch (ProductNotFoundException e) {
@@ -228,8 +242,8 @@ public class ProductController {
     }
 
     @GetMapping("/products/detail/{id}")
-    public String viewProductsDetail(@PathVariable("id") Integer id, Model model,
-                              RedirectAttributes ra) {
+    public String viewProductDetails(@PathVariable("id") Integer id, Model model,
+                                     RedirectAttributes ra) {
         try {
             Product product = productService.get(id);
             model.addAttribute("product", product);

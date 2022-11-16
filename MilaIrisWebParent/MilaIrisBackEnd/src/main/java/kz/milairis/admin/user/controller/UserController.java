@@ -42,7 +42,6 @@ public class UserController {
             @Param("sortField") String sortField, @Param("sortDir") String sortDir,
             @Param("keyword") String keyword
     ) {
-
         Page<User> page = service.listByPage(pageNum, sortField, sortDir, keyword);
 
         List<User> listUsers = page.getContent();
@@ -160,7 +159,7 @@ public class UserController {
     }
 
     @GetMapping("/users/export/csv")
-    public void exportToCsv(HttpServletResponse response) throws IOException {
+    public void exportToCSV(HttpServletResponse response) throws IOException {
         List<User> listUsers = service.listAll();
         UserCsvExporter exporter = new UserCsvExporter();
         exporter.export(listUsers, response);

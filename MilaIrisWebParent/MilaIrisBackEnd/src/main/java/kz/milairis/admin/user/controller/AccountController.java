@@ -31,6 +31,7 @@ public class AccountController {
         model.addAttribute("user", user);
 
         return "users/account_form";
+
     }
 
     @PostMapping("/account/update")
