@@ -1,4 +1,4 @@
-package kz.milairis.site;
+package kz.milairis;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
