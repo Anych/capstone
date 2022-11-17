@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 public class MilaIrisUserDetails implements UserDetails {
-
+    private static final long serialVersionUID = 1L;
     private User user;
 
     public MilaIrisUserDetails(User user) {
@@ -72,5 +72,9 @@ public class MilaIrisUserDetails implements UserDetails {
 
     public void setLastName(String lastName) {
         this.user.setLastName(lastName);
+    }
+
+    public boolean hasRole(String roleName) {
+        return user.hasRole(roleName);
     }
 }
