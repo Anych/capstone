@@ -1,4 +1,4 @@
-package kz.milairis.admin.category;
+package kz.milairis.common.exception;
 
 public class CategoryNotFoundException extends Exception {
 

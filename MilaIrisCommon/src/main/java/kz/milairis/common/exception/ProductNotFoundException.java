@@ -1,4 +1,4 @@
-package kz.milairis.admin.product;
+package kz.milairis.common.exception;
 
 public class ProductNotFoundException extends Exception {
 

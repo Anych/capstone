@@ -1,7 +1,7 @@
 package kz.milairis.admin.product;
 
-import kz.milairis.common.entity.Brand;
 import kz.milairis.common.entity.Product;
+import kz.milairis.common.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

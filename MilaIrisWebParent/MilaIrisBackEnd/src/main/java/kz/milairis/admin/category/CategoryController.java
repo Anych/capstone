@@ -2,6 +2,7 @@ package kz.milairis.admin.category;
 
 import kz.milairis.admin.FileUploadUtil;
 import kz.milairis.common.entity.Category;
+import kz.milairis.common.exception.CategoryNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;

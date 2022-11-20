@@ -1,6 +1,7 @@
 package kz.milairis.admin.category;
 
 import kz.milairis.common.entity.Category;
+import kz.milairis.common.exception.CategoryNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

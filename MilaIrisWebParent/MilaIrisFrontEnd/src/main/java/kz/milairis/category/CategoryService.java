@@ -1,6 +1,7 @@
 package kz.milairis.category;
 
 import kz.milairis.common.entity.Category;
+import kz.milairis.common.exception.CategoryNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,12 @@ import java.util.Set;
 @Service
 public class CategoryService {
 
-    @Autowired private CategoryRepository repo;
+    private final CategoryRepository repo;
+
+    @Autowired
+    public CategoryService(CategoryRepository repo) {
+        this.repo = repo;
+    }
 
     public List<Category> listNoChildrenCategories() {
         List<Category> listNoChildrenCategories = new ArrayList<>();
@@ -28,7 +34,11 @@ public class CategoryService {
         return listNoChildrenCategories;
     }
 
-    public Category getCategory(String alias) {
+    public Category getCategory(String alias) throws CategoryNotFoundException {
+        Category category = repo.findByAliasEnabled(alias);
+        if (category == null) {
+            throw new CategoryNotFoundException("Could not find any categories with alias " + alias);
+        }
         return repo.findByAliasEnabled(alias);
     }
 
