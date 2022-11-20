@@ -7,6 +7,7 @@ import kz.milairis.common.exception.CategoryNotFoundException;
 import kz.milairis.common.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +18,10 @@ import java.util.List;
 @Controller
 public class ProductController {
 
-    @Autowired private ProductService productService;
-    @Autowired private CategoryService categoryService;
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private CategoryService categoryService;
 
     @GetMapping("c/{category_alias}")
     public String viewCategoryFirstPage(@PathVariable("category_alias") String alias,
@@ -76,5 +79,35 @@ public class ProductController {
         } catch (ProductNotFoundException e) {
             return "error/404";
         }
+    }
+
+    @GetMapping("/search")
+    public String searchFirstPage(@Param("keyword") String keyword, Model model) {
+        return searchByPage(keyword, 1, model);
+    }
+
+    @GetMapping("/search/page/{pageNum}")
+    public String searchByPage(@Param("keyword") String keyword,
+                         @PathVariable("pageNum") int pageNum,
+                         Model model) {
+        Page<Product> pageProducts = productService.search(keyword, pageNum);
+        List<Product> listResult = pageProducts.getContent();
+
+        long startCount = (long) (pageNum - 1) * ProductService.SEARCH_RESULTS_PER_PAGE + 1;
+        long endCount = startCount + ProductService.SEARCH_RESULTS_PER_PAGE - 1;
+        if (endCount > pageProducts.getTotalElements()) {
+            endCount = pageProducts.getTotalElements();
+        }
+
+        model.addAttribute("currentPage", pageNum);
+        model.addAttribute("totalPages", pageProducts.getTotalPages());
+        model.addAttribute("startCount", startCount);
+        model.addAttribute("endCount", endCount);
+        model.addAttribute("totalItems", pageProducts.getTotalElements());
+        model.addAttribute("pageTitle", keyword + " - Search Result");
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("listResult", listResult);
+
+        return "product/search_result";
     }
 }
