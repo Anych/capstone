@@ -17,7 +17,7 @@ import java.util.Set;
 public class BrandRestController {
 	@Autowired
 	private BrandService service;
-	
+
 	@PostMapping("/brands/check_unique")
 	public String checkUnique(@Param("id") Integer id, @Param("name") String name) {
 		return service.checkUnique(id, name);

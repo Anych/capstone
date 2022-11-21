@@ -17,7 +17,7 @@ public class BrandService {
 
 	@Autowired
 	private BrandRepository repo;
-	
+
 	public List<Brand> listAll() {
 		return (List<Brand>) repo.findAll();
 	}
@@ -43,7 +43,7 @@ public class BrandService {
 	public Brand get(Integer id) throws BrandNotFoundException {
 		try {
 			return repo.findById(id).get();
-		} catch (NoSuchElementException e) {
+		} catch (NoSuchElementException ex) {
 			throw new BrandNotFoundException("Could not find any brand with ID " + id);
 		}
 	}
@@ -54,6 +54,7 @@ public class BrandService {
 		if (countById == null || countById == 0) {
 			throw new BrandNotFoundException("Could not find any brand with ID " + id);
 		}
+
 		repo.deleteById(id);
 	}
 

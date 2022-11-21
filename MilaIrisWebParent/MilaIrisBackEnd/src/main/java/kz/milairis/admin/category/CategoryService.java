@@ -102,7 +102,7 @@ public class CategoryService {
 			String allParentIds = parent.getAllParentIDs() == null ? "-" : parent.getAllParentIDs();
 			allParentIds += String.valueOf(parent.getId()) + "-";
 			category.setAllParentIDs(allParentIds);
- 		}
+		}
 
 		return repo.save(category);
 	}
