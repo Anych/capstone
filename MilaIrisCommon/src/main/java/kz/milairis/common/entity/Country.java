@@ -19,7 +19,7 @@ public class Country {
     @OneToMany(mappedBy = "country")
     private Set<State> states;
 
-    public Country() {
+    public Country(Integer countryId) {
 
     }
 
@@ -37,6 +37,10 @@ public class Country {
 
     public Country(String name) {
         this.name = name;
+    }
+
+    public Country() {
+
     }
 
     public Integer getId() {
