@@ -25,10 +25,10 @@ public class StateRepositoryTests {
 	
 	@Test
 	public void testCreateStatesInQazaqstan() {
-		Integer countryId = 1;
+		Integer countryId = 126;
 		Country country = entityManager.find(Country.class, countryId);
 		
-		State state = repo.save(new State("Almaty oblast", country));
+		State state = repo.save(new State("Karaganda oblast", country));
 		
 		assertThat(state).isNotNull();
 		assertThat(state.getId()).isGreaterThan(0);
