@@ -11,13 +11,7 @@ import java.util.Set;
 
 @Service
 public class CategoryService {
-
-    private final CategoryRepository repo;
-
-    @Autowired
-    public CategoryService(CategoryRepository repo) {
-        this.repo = repo;
-    }
+    @Autowired private CategoryRepository repo;
 
     public List<Category> listNoChildrenCategories() {
         List<Category> listNoChildrenCategories = new ArrayList<>();
@@ -39,7 +33,8 @@ public class CategoryService {
         if (category == null) {
             throw new CategoryNotFoundException("Could not find any categories with alias " + alias);
         }
-        return repo.findByAliasEnabled(alias);
+
+        return category;
     }
 
     public List<Category> getCategoryParents(Category child) {

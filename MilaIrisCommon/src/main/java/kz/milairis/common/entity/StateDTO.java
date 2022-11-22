@@ -1,4 +1,4 @@
-package kz.milairis.admin.setting.state;
+package kz.milairis.common.entity;
 
 public class StateDTO {
 	private Integer id;

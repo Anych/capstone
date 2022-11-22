@@ -12,8 +12,7 @@ import java.util.List;
 @Controller
 public class MainController {
 
-	@Autowired
-	private CategoryService categoryService;
+	@Autowired private CategoryService categoryService;
 
 	@GetMapping("")
 	public String viewHomePage(Model model) {
