@@ -19,8 +19,8 @@ public class Country {
     @OneToMany(mappedBy = "country")
     private Set<State> states;
 
-    public Country(Integer countryId) {
-
+    public Country(Integer id) {
+        this.id = id;
     }
 
     public Country(Integer id, String name, String code) {

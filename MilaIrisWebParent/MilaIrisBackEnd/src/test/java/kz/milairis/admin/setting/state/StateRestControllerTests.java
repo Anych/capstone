@@ -37,6 +37,23 @@ public class StateRestControllerTests {
 
 	@Test
 	@WithMockUser(username = "Anuar", password = "something", roles = "Admin")
+	public void testListByCountries() throws Exception {
+		Integer countryId = 1;
+		String url = "/states/list_by_country/" + countryId;
+
+		MvcResult result = mockMvc.perform(get(url))
+				.andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
+
+		String jsonResponse = result.getResponse().getContentAsString();
+		State[] states = objectMapper.readValue(jsonResponse, State[].class);
+
+		assertThat(states).hasSizeGreaterThan(0);
+	}
+
+	@Test
+	@WithMockUser(username = "Anuar", password = "something", roles = "Admin")
 	public void testCreateState() throws Exception {
 		String url = "/states/save";
 		Integer countryId = 1;
