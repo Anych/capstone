@@ -3,6 +3,10 @@ package kz.milairis.common.entity;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * It is used for listing countries when user want to make an order or in a registration form.
+ * Entity has one-to-many relationship with states entity.
+ */
 @Entity
 @Table(name = "countries")
 public class Country {
@@ -28,7 +32,6 @@ public class Country {
         this.name = name;
         this.code = code;
     }
-
 
     public Country(String name, String code) {
         this.name = name;
@@ -71,6 +74,4 @@ public class Country {
     public String toString() {
         return "Country [id=" + id + ", name=" + name + ", code=" + code + "]";
     }
-
-
 }

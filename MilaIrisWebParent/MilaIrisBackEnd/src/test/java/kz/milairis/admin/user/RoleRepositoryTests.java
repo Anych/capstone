@@ -15,7 +15,6 @@ import kz.milairis.common.entity.Role;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
-@Rollback(false)
 public class RoleRepositoryTests {
 
 	@Autowired

@@ -3,6 +3,12 @@ package kz.milairis.common.entity;
 import javax.persistence.*;
 import java.util.*;
 
+/**
+ * Entity has many-to-one relationship with category model.
+ * Entity has many-to-one relationship with brand model.
+ * Entity has one-to-many relationship with product detail model.
+ * Entity has one-to-many relationship with images model. And has field for main image.
+ */
 @Entity
 @Table(name = "products")
 public class Product {
@@ -231,6 +237,9 @@ public class Product {
 		this.images.add(new ProductImage(imageName, this));
 	}
 
+	/**
+	 * @return default image or image that was set by staff.
+	 */
 	@Transient
 	public String getMainImagePath() {
 		if (id == null || mainImage == null) return "/images/image-thumbnail.png";
@@ -267,6 +276,9 @@ public class Product {
 		return false;
 	}
 
+	/**
+	 * @return short name of product when user browsing products for more beautiful UI.
+	 */
 	@Transient
 	public String getShortName() {
 		if (name.length() > 70) {
@@ -275,6 +287,9 @@ public class Product {
 		return name;
 	}
 
+	/**
+	 * @return current price of product with discount percent.
+	 */
 	@Transient
 	public float getDiscountPrice() {
 		if (discountPercent > 0) {

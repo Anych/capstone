@@ -2,10 +2,12 @@ package kz.milairis.common.entity;
 
 import javax.persistence.*;
 
+/**
+ * Entity has many-to-one relationship with product and cannot exist without particular product.
+ */
 @Entity
 @Table(name = "product_images")
 public class ProductImage {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -60,5 +62,4 @@ public class ProductImage {
 	public String getImagePath() {
 		return "/product-images/" + product.getId() + "/extras/" + this.name;
 	}
-	
 }

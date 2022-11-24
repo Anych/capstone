@@ -3,6 +3,11 @@ package kz.milairis.common.entity;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * It is used for uses who use a main e-commerce site.
+ * For username is using an email field.
+ * Passwords are encrypted by bcrypt.
+ */
 @Entity
 @Table(name = "customers")
 public class Customer {

@@ -4,6 +4,12 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Entity has many-to-many relationship with a brand entity.
+ * Entity has one-to-one relationship and one-to-many. It can have one parent and many children.
+ * allParentIDs field is set of parents of particular category. It is using to search for products
+ * in a specific category, including its subcategories.
+ */
 @Entity
 @Table(name = "categories")
 public class Category {
@@ -40,6 +46,10 @@ public class Category {
 		this.id = id;
 	}
 
+	/**
+	 * Method is using in forms when user want to choose one category.
+	 * It returns list of copies. And does not contain unnecessary information of category.
+	 */
 	public static Category copyIdAndName(Category category) {
 		Category copyCategory = new Category();
 		copyCategory.setId(category.getId());
@@ -48,6 +58,10 @@ public class Category {
 		return copyCategory;
 	}
 
+	/**
+	 * Method is using in forms when user want to choose one category.
+	 * It returns list of copies. And does not contain unnecessary information of category.
+	 */
 	public static Category copyIdAndName(Integer id, String name) {
 		Category copyCategory = new Category();
 		copyCategory.setId(id);
@@ -55,7 +69,11 @@ public class Category {
 		
 		return copyCategory;
 	}
-	
+
+	/**
+	 * Method is using in category pages when user want to manage categories page.
+	 * It returns list of copies. And contains full information of category.
+	 */
 	public static Category copyFull(Category category) {
 		Category copyCategory = new Category();
 		copyCategory.setId(category.getId());
@@ -67,14 +85,18 @@ public class Category {
 		
 		return copyCategory;		
 	}
-	
+
+	/**
+	 * Method is using in category pages when user want to manage categories page.
+	 * It returns list of copies. And contains all information of category.
+	 */
 	public static Category copyFull(Category category, String name) {
 		Category copyCategory = Category.copyFull(category);
 		copyCategory.setName(name);
 		
 		return copyCategory;
 	}
-	
+
 	public Category(String name) {
 		this.name = name;
 		this.alias = name;

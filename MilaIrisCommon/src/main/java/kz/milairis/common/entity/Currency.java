@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * It is used to show which prices in a site.
+ */
 @Entity
 @Table(name = "currencies")
 public class Currency {

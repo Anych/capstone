@@ -17,16 +17,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 public class BrandRepositoryTests {
 	
-	@Autowired
-	private BrandRepository repo;
+	@Autowired private BrandRepository repo;
 	
 	@Test
 	public void testCreateBrand1() {
 		Category laptops = new Category(6);
-		Brand acer = new Brand("Asus");
-		acer.getCategories().add(laptops);
+		Brand asus = new Brand("Asus1");
+		asus.getCategories().add(laptops);
 		
-		Brand savedBrand = repo.save(acer);
+		Brand savedBrand = repo.save(asus);
 		
 		assertThat(savedBrand).isNotNull();
 		assertThat(savedBrand.getId()).isGreaterThan(0);
@@ -37,7 +36,7 @@ public class BrandRepositoryTests {
 		Category cellphones = new Category(4);
 		Category tablets = new Category(7);
 		
-		Brand apple = new Brand("Asic");
+		Brand apple = new Brand("Apple1");
 		apple.getCategories().add(cellphones);
 		apple.getCategories().add(tablets);
 		
@@ -49,7 +48,7 @@ public class BrandRepositoryTests {
 	
 	@Test
 	public void testCreateBrand3() {
-		Brand samsung = new Brand("Samsung");
+		Brand samsung = new Brand("Samsung1");
 		
 		samsung.getCategories().add(new Category(29));	// category memory
 		samsung.getCategories().add(new Category(24));	// category internal hard drive
@@ -72,7 +71,7 @@ public class BrandRepositoryTests {
 	public void testGetById() {
 		Brand brand = repo.findById(1).get();
 		
-		assertThat(brand.getName()).isEqualTo("Acer");
+		assertThat(brand.getName()).isEqualTo("Canon");
 	}
 	
 	@Test

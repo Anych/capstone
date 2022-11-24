@@ -2,6 +2,11 @@ package kz.milairis.common.entity;
 
 import javax.persistence.*;
 
+/**
+ * Entity has many-to-one relationship with product and cannot exist without it.
+ * Product details is specific model for product because different products has different details.
+ * It structures seems like map in java with name and value.
+ */
 @Entity
 @Table(name = "product_details")
 public class ProductDetail {
@@ -29,8 +34,6 @@ public class ProductDetail {
 		this.value = value;
 		this.product = product;
 	}
-
-
 
 	public ProductDetail(String name, String value, Product product) {
 		this.name = name;
@@ -69,5 +72,4 @@ public class ProductDetail {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-
 }

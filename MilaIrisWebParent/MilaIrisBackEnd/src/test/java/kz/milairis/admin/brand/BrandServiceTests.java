@@ -15,9 +15,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(SpringExtension.class)
 public class BrandServiceTests {
 	
-	@MockBean private BrandRepository repo;
+	@MockBean
+	private BrandRepository repo;
 	
-	@InjectMocks private BrandService service;
+	@InjectMocks
+	private BrandService service;
 	
 	@Test
 	public void testCheckUniqueInNewModeReturnDuplicate() {

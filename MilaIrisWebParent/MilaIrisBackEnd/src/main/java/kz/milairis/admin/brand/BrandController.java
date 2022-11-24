@@ -23,8 +23,10 @@ import java.util.List;
 @Controller
 public class BrandController {
 	private String defaultRedirectURL = "redirect:/brands/page/1?sortField=name&sortDir=asc";
-	@Autowired private BrandService brandService;
-	@Autowired private CategoryService categoryService;
+	@Autowired
+	private BrandService brandService;
+	@Autowired
+	private CategoryService categoryService;
 
 	@GetMapping("/brands")
 	public String listFirstPage() {

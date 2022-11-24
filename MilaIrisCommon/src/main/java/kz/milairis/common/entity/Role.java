@@ -2,6 +2,11 @@ package kz.milairis.common.entity;
 
 import javax.persistence.*;
 
+/**
+ * Entity for admin panel user roles.
+ * Site has five main roles: Admin, Salesperson, Editor, Shipper, Assistant with different privileges.
+ * For future scaling you can add new roles.
+ */
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -16,6 +21,7 @@ public class Role {
 	private String description;
 
 	public Role() {
+
 	}
 	
 	public Role(Integer id) {
@@ -84,6 +90,4 @@ public class Role {
 	public String toString() {
 		return this.name;
 	}
-
-	
 }

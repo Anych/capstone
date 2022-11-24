@@ -15,7 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
-@Rollback(false)
 public class CurrencyRepositoryTests {
 
 	@Autowired

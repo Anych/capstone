@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Entity has many-to-many relationship with a category entity.
+ */
 @Entity
 @Table(name = "brands")
 public class Brand {
@@ -26,7 +29,6 @@ public class Brand {
 	private Set<Category> categories = new HashSet<>();
 
 	public Brand() {
-		
 	}
 	
 	public Brand(String name) {
