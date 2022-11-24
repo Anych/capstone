@@ -1,14 +1,14 @@
 package kz.milairis.admin.brand;
 
+import kz.milairis.admin.paging.SearchRepository;
 import kz.milairis.common.entity.Brand;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 
-public interface BrandRepository extends PagingAndSortingRepository<Brand, Integer> {
+public interface BrandRepository extends SearchRepository<Brand, Integer> {
 
     public Long countById(Integer id);
 
