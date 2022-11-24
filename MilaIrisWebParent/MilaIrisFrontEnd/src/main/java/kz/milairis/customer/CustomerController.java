@@ -5,7 +5,9 @@ import kz.milairis.common.entity.Country;
 import kz.milairis.common.entity.Customer;
 import kz.milairis.setting.EmailSettingBag;
 import kz.milairis.setting.SettingService;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -21,8 +23,10 @@ import java.util.List;
 
 @Controller
 public class CustomerController {
-	@Autowired private CustomerService customerService;
-	@Autowired private SettingService settingService;
+	@Autowired
+	private CustomerService customerService;
+	@Autowired
+	private SettingService settingService;
 
 	@GetMapping("/register")
 	public String showRegisterForm(Model model) {
@@ -71,8 +75,12 @@ public class CustomerController {
 		helper.setText(content, true);
 
 		mailSender.send(message);
+	}
 
-		System.out.println("to Address: " + toAddress);
-		System.out.println("Verify URL: " + verifyURL);
+	@GetMapping("/verify")
+	public String verifyAccount(@Param("code") String code, Model model) {
+		boolean verified = customerService.verify(code);
+
+		return "register/" + (verified ? "verify_success" : "verify_fail");
 	}
 }
