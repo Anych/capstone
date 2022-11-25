@@ -18,7 +18,8 @@ import java.util.NoSuchElementException;
 public class ProductService {
     public static final int PRODUCTS_PER_PAGE = 5;
 
-    @Autowired private ProductRepository repo;
+    @Autowired
+    private ProductRepository repo;
 
     public List<Product> listAll() {
         return (List<Product>) repo.findAll();

@@ -16,6 +16,4 @@ public class CategoryPageInfo {
     public void setTotalElements(long totalElements) {
         this.totalElements = totalElements;
     }
-
-
 }

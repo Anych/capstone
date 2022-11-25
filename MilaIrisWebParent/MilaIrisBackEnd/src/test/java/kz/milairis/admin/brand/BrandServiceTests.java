@@ -1,6 +1,7 @@
 package kz.milairis.admin.brand;
 
 import kz.milairis.common.entity.Brand;
+import kz.milairis.common.entity.Category;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -20,7 +21,7 @@ public class BrandServiceTests {
 	
 	@InjectMocks
 	private BrandService service;
-	
+
 	@Test
 	public void testCheckUniqueInNewModeReturnDuplicate() {
 		Integer id = null;

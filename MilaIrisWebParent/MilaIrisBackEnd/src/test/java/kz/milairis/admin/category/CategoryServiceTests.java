@@ -15,9 +15,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(SpringExtension.class)
 public class CategoryServiceTests {
 
-    @MockBean private CategoryRepository repo;
+    @MockBean
+    private CategoryRepository repo;
 
-    @InjectMocks private CategoryService service;
+    @InjectMocks
+    private CategoryService service;
 
     @Test
     public void testCheckUniqueInNewModeReturnDuplicateName() {

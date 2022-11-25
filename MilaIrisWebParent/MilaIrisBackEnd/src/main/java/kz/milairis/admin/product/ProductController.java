@@ -28,7 +28,7 @@ import java.util.List;
 
 @Controller
 public class ProductController {
-    private String defaultRedirectURL = "redirect:/products/page/1?sortField=name&sortDir=asc&categoryId=0";
+    private final String defaultRedirectURL = "redirect:/products/page/1?sortField=name&sortDir=asc&categoryId=0";
     @Autowired private ProductService productService;
     @Autowired private BrandService brandService;
     @Autowired private CategoryService categoryService;
