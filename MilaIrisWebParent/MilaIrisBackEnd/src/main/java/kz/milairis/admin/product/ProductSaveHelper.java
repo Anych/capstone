@@ -18,7 +18,7 @@ import java.util.Set;
 public class ProductSaveHelper {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductSaveHelper.class);
 
-    static void deleteExtraImagesWeredRemovedOnForm(Product product) {
+    static void deleteExtraImagesWereRemovedOnForm(Product product) {
         String extraImageDir = "../product-images/" + product.getId() + "/extras";
         Path dirPath = Paths.get(extraImageDir);
 

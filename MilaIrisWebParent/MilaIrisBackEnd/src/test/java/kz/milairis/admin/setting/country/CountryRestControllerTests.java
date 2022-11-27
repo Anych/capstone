@@ -2,7 +2,6 @@ package kz.milairis.admin.setting.country;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kz.milairis.common.entity.Country;
-import kz.milairis.common.entity.State;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
