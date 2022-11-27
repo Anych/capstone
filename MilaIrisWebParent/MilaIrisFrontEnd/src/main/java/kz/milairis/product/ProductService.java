@@ -13,7 +13,8 @@ public class ProductService {
     public static final int PRODUCTS_PER_PAGE = 10;
     public static final int SEARCH_RESULTS_PER_PAGE = 10;
 
-    @Autowired private ProductRepository repo;
+    @Autowired
+    private ProductRepository repo;
 
     public Page<Product> listByCategory(int pageNum, Integer categoryId) {
         String categoryIdMatch = "-" + String.valueOf(categoryId) + "-";

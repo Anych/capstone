@@ -17,10 +17,12 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class CustomerService {
-
-	@Autowired private CountryRepository countryRepo;
-	@Autowired private CustomerRepository customerRepo;
-	@Autowired PasswordEncoder passwordEncoder;
+	@Autowired
+	private CountryRepository countryRepo;
+	@Autowired
+	private CustomerRepository customerRepo;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	public List<Country> listAllCountries() {
 		return countryRepo.findAllByOrderByNameAsc();

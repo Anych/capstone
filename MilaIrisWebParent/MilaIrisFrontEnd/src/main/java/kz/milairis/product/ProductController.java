@@ -17,8 +17,10 @@ import java.util.List;
 
 @Controller
 public class ProductController {
-    @Autowired private ProductService productService;
-    @Autowired private CategoryService categoryService;
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private CategoryService categoryService;
 
     @GetMapping("/c/{category_alias}")
     public String viewCategoryFirstPage(@PathVariable("category_alias") String alias,

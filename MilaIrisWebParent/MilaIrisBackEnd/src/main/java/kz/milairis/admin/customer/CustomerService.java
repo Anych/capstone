@@ -18,9 +18,12 @@ import java.util.NoSuchElementException;
 public class CustomerService {
 	public static final int CUSTOMERS_PER_PAGE = 10;
 
-	@Autowired private CustomerRepository customerRepo;
-	@Autowired private CountryRepository countryRepo;
-	@Autowired private PasswordEncoder passwordEncoder;
+	@Autowired
+	private CustomerRepository customerRepo;
+	@Autowired
+	private CountryRepository countryRepo;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public void listByPage(int pageNum, PagingAndSortingHelper helper) {
 		helper.listEntities(pageNum, CUSTOMERS_PER_PAGE, customerRepo);

@@ -39,5 +39,4 @@ public class SettingBag {
     public List<Setting> list() {
         return listSettings;
     }
-
 }

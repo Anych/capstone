@@ -11,7 +11,8 @@ import java.util.Set;
 
 @Service
 public class CategoryService {
-    @Autowired private CategoryRepository repo;
+    @Autowired
+    private CategoryRepository repo;
 
     public List<Category> listNoChildrenCategories() {
         List<Category> listNoChildrenCategories = new ArrayList<>();

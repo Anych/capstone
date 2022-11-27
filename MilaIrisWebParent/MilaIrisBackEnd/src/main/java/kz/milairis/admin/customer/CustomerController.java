@@ -19,7 +19,8 @@ import java.util.List;
 public class CustomerController {
 	private String defaultRedirectURL = "redirect:/customers/page/1?sortField=firstName&sortDir=asc";
 
-	@Autowired private CustomerService service;
+	@Autowired
+	private CustomerService service;
 
 	@GetMapping("/customers")
 	public String listFirstPage(Model model) {
