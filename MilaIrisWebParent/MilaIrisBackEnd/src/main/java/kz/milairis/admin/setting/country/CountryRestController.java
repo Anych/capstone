@@ -9,16 +9,18 @@ import java.util.List;
 @RestController
 public class CountryRestController {
 
-	@Autowired private CountryRepository repo;
+	@Autowired
+	private CountryRepository repo;
 	
 	@GetMapping("/countries/list")
 	public List<Country> listAll() {
 		return repo.findAllByOrderByNameAsc();
 	}
-	
+
 	@PostMapping("/countries/save")
 	public String save(@RequestBody Country country) {
 		Country savedCountry = repo.save(country);
+		System.out.println(savedCountry + "saved");
 		return String.valueOf(savedCountry.getId());
 	}
 	

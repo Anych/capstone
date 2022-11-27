@@ -27,13 +27,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @AutoConfigureMockMvc
 public class StateRestControllerTests {
 
-	@Autowired MockMvc mockMvc;
+	@Autowired
+	MockMvc mockMvc;
 
-	@Autowired ObjectMapper objectMapper;
+	@Autowired
+	ObjectMapper objectMapper;
 
-	@Autowired CountryRepository countryRepo;
+	@Autowired
+	CountryRepository countryRepo;
 
-	@Autowired StateRepository stateRepo;
+	@Autowired
+	StateRepository stateRepo;
 
 	@Test
 	@WithMockUser(username = "Anuar", password = "something", roles = "Admin")
@@ -56,7 +60,7 @@ public class StateRestControllerTests {
 	@WithMockUser(username = "Anuar", password = "something", roles = "Admin")
 	public void testCreateState() throws Exception {
 		String url = "/states/save";
-		Integer countryId = 1;
+		Integer countryId = 126;
 		Country country = countryRepo.findById(countryId).get();
 		State state = new State("Aqtobe", country);
 
@@ -78,7 +82,7 @@ public class StateRestControllerTests {
 	@WithMockUser(username = "Anuar", password = "something", roles = "Admin")
 	public void testUpdateState() throws Exception {
 		String url = "/states/save";
-		Integer stateId = 1;
+		Integer stateId = 126;
 		String stateName = "Shymkent";
 
 		State state = stateRepo.findById(stateId).get();
