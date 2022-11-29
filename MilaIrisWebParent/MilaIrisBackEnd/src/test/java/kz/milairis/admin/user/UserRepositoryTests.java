@@ -1,7 +1,8 @@
 package kz.milairis.admin.user;
 
-import kz.milairis.common.entity.Role;
-import kz.milairis.common.entity.User;
+import kz.milairis.admin.user.repository.UserRepository;
+import kz.milairis.common.entity.user.Role;
+import kz.milairis.common.entity.user.User;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
 

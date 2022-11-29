@@ -1,12 +1,12 @@
 package kz.milairis.admin.setting;
 
+import kz.milairis.admin.setting.repository.CurrencyRepository;
 import kz.milairis.common.entity.Currency;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.annotation.Rollback;
 
 import java.util.Arrays;
 import java.util.List;

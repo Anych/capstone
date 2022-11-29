@@ -1,7 +1,8 @@
 package kz.milairis.customer;
 
 import kz.milairis.common.entity.Country;
-import kz.milairis.common.entity.Customer;
+import kz.milairis.common.entity.user.Customer;
+import kz.milairis.customer.repository.CustomerRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

@@ -6,7 +6,7 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import kz.milairis.admin.AbstractExporter;
-import kz.milairis.common.entity.User;
+import kz.milairis.common.entity.user.User;
 
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;

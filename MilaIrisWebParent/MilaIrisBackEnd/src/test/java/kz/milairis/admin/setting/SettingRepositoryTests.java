@@ -1,12 +1,12 @@
 package kz.milairis.admin.setting;
 
-import kz.milairis.common.entity.Setting;
-import kz.milairis.common.entity.SettingCategory;
+import kz.milairis.admin.setting.repository.SettingRepository;
+import kz.milairis.common.entity.setting.Setting;
+import kz.milairis.common.entity.setting.SettingCategory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
 
@@ -16,7 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class SettingRepositoryTests {
 
-    @Autowired SettingRepository repo;
+    @Autowired
+    SettingRepository repo;
 
     @Test
     public void testCreateGeneralSettings() {

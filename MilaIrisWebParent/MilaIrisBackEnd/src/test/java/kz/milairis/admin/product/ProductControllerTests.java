@@ -1,6 +1,7 @@
 package kz.milairis.admin.product;
 
-import kz.milairis.common.entity.Product;
+import kz.milairis.admin.product.controller.ProductController;
+import kz.milairis.admin.product.service.ProductService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.stream.Stream;
 
 public class FileUploadUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(FileUploadUtil.class);
@@ -33,8 +34,8 @@ public class FileUploadUtil {
     public static void cleanDir(String dir) {
         Path dirPath = Paths.get(dir);
 
-        try {
-            Files.list(dirPath).forEach(file -> {
+        try (Stream<Path> files = Files.list(dirPath)){
+            files.forEach(file -> {
                 if (!Files.isDirectory(file)) {
                     try {
                         Files.delete(file);

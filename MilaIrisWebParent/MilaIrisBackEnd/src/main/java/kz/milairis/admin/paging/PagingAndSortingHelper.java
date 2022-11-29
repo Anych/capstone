@@ -9,11 +9,11 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import java.util.List;
 
 public class PagingAndSortingHelper {
-	private ModelAndViewContainer model;
-	private String listName;
-	private String sortField;
-	private String sortDir;
-	private String keyword;
+	private final ModelAndViewContainer model;
+	private final String listName;
+	private final String sortField;
+	private final String sortDir;
+	private final String keyword;
 	
 	public PagingAndSortingHelper(ModelAndViewContainer model, String listName,
 			String sortField, String sortDir, String keyword) {
@@ -28,7 +28,7 @@ public class PagingAndSortingHelper {
 		List<?> listItems = page.getContent();
 		int pageSize = page.getSize();
 		
-		long startCount = (pageNum - 1) * pageSize + 1;
+		long startCount = (long) (pageNum - 1) * pageSize + 1;
 		long endCount = startCount + pageSize - 1;
 		if (endCount > page.getTotalElements()) {
 			endCount = page.getTotalElements();
@@ -44,8 +44,8 @@ public class PagingAndSortingHelper {
 	
 	public void listEntities(int pageNum, int pageSize, SearchRepository<?, Integer> repo) {
 		Pageable pageable = createPageable(pageSize, pageNum);
-		Page<?> page = null;
-		
+		Page<?> page;
+
 		if (keyword != null) {
 			page = repo.findAll(keyword, pageable);
 		} else {

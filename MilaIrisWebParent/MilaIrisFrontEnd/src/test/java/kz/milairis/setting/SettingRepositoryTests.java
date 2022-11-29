@@ -1,7 +1,8 @@
 package kz.milairis.setting;
 
-import kz.milairis.common.entity.Setting;
-import kz.milairis.common.entity.SettingCategory;
+import kz.milairis.common.entity.setting.Setting;
+import kz.milairis.common.entity.setting.SettingCategory;
+import kz.milairis.setting.repository.SettingRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -15,7 +16,8 @@ import java.util.List;
 @Rollback(false)
 public class SettingRepositoryTests {
 
-    @Autowired SettingRepository repo;
+    @Autowired
+    SettingRepository repo;
 
     @Test
     public void testFindByTwoCategories() {

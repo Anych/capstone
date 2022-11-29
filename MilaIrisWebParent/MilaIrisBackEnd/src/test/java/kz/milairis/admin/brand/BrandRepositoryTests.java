@@ -1,5 +1,6 @@
 package kz.milairis.admin.brand;
 
+import kz.milairis.admin.brand.repository.BrandRepository;
 import kz.milairis.common.entity.Brand;
 import kz.milairis.common.entity.Category;
 import org.junit.jupiter.api.Test;

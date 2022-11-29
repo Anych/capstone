@@ -1,15 +1,15 @@
 package kz.milairis.admin.product;
 
+import kz.milairis.admin.product.repository.ProductRepository;
 import kz.milairis.common.entity.Brand;
 import kz.milairis.common.entity.Category;
-import kz.milairis.common.entity.Product;
+import kz.milairis.common.entity.product.Product;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.annotation.Rollback;
 
 import java.util.Date;
 import java.util.Optional;

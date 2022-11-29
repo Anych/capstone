@@ -1,6 +1,8 @@
 package kz.milairis.admin.product;
 
-import kz.milairis.common.entity.Product;
+import kz.milairis.admin.product.repository.ProductRepository;
+import kz.milairis.admin.product.service.ProductService;
+import kz.milairis.common.entity.product.Product;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

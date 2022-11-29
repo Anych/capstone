@@ -1,7 +1,8 @@
 package kz.milairis.admin.brand;
 
+import kz.milairis.admin.brand.repository.BrandRepository;
+import kz.milairis.admin.brand.service.BrandService;
 import kz.milairis.common.entity.Brand;
-import kz.milairis.common.entity.Category;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

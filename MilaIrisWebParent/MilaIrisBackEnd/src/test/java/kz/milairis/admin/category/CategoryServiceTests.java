@@ -1,5 +1,7 @@
 package kz.milairis.admin.category;
 
+import kz.milairis.admin.category.repository.CategoryRepository;
+import kz.milairis.admin.category.service.CategoryService;
 import kz.milairis.common.entity.Category;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,5 +1,6 @@
 package kz.milairis.admin.brand;
 
+import kz.milairis.admin.brand.controller.BrandController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

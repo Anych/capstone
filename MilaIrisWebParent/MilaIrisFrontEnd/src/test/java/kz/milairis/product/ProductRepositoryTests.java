@@ -1,6 +1,7 @@
 package kz.milairis.product;
 
-import kz.milairis.common.entity.Product;
+import kz.milairis.common.entity.product.Product;
+import kz.milairis.product.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -12,7 +13,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class ProductRepositoryTests {
 
-    @Autowired ProductRepository repo;
+    @Autowired
+    ProductRepository repo;
 
     @Test
     public void testFindByAlias() {

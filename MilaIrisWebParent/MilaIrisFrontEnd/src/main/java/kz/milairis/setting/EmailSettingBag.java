@@ -1,7 +1,7 @@
 package kz.milairis.setting;
 
-import kz.milairis.common.entity.Setting;
-import kz.milairis.common.entity.SettingBag;
+import kz.milairis.common.entity.setting.Setting;
+import kz.milairis.common.entity.setting.SettingBag;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package kz.milairis.category;
 
+import kz.milairis.category.repository.CategoryRepository;
 import kz.milairis.common.entity.Category;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class CategoryRepositoryTests {
 
-    @Autowired CategoryRepository repo;
+    @Autowired
+    CategoryRepository repo;
 
     @Test
     public void testListEnabledCategories() {

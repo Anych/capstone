@@ -1,8 +1,7 @@
 package kz.milairis;
 
-import kz.milairis.category.CategoryService;
+import kz.milairis.category.service.CategoryService;
 import kz.milairis.common.entity.Category;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,8 +14,11 @@ import java.util.List;
 @Controller
 public class MainController {
 
-	@Autowired
-	private CategoryService categoryService;
+	private final CategoryService categoryService;
+
+	public MainController(CategoryService categoryService) {
+		this.categoryService = categoryService;
+	}
 
 	@GetMapping("")
 	public String viewHomePage(Model model) {

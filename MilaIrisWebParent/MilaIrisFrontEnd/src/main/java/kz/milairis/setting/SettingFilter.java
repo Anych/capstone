@@ -1,7 +1,7 @@
 package kz.milairis.setting;
 
-import kz.milairis.common.entity.Setting;
-import org.springframework.beans.factory.annotation.Autowired;
+import kz.milairis.common.entity.setting.Setting;
+import kz.milairis.setting.service.SettingService;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -12,8 +12,11 @@ import java.util.List;
 @Component
 public class SettingFilter implements Filter {
 
-    @Autowired
-    private SettingService service;
+    private final SettingService service;
+
+    public SettingFilter(SettingService service) {
+        this.service = service;
+    }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -30,9 +33,7 @@ public class SettingFilter implements Filter {
 
         List<Setting> generalSettings = service.getGeneralSettings();
 
-        generalSettings.forEach(setting -> {
-            request.setAttribute(setting.getKey(), setting.getValue());
-        });
+        generalSettings.forEach(setting -> request.setAttribute(setting.getKey(), setting.getValue()));
 
         chain.doFilter(request, response);
 
